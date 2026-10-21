@@ -1,0 +1,32 @@
+[
+  {
+    "query": "What can Python be used for?",
+    "relevant_chunk_ids": [
+      "pdf_benchmark_corpus.pdf::chunk-0"
+    ]
+  },
+  {
+    "query": "How does machine learning learn patterns?",
+    "relevant_chunk_ids": [
+      "pdf_benchmark_corpus.pdf::chunk-1"
+    ]
+  },
+  {
+    "query": "What is the purpose of data engineering?",
+    "relevant_chunk_ids": [
+      "pdf_benchmark_corpus.pdf::chunk-2"
+    ]
+  },
+  {
+    "query": "How do neural networks learn complex patterns?",
+    "relevant_chunk_ids": [
+      "pdf_benchmark_corpus.pdf::chunk-3"
+    ]
+  },
+  {
+    "query": "How does RAG generate grounded answers?",
+    "relevant_chunk_ids": [
+      "pdf_benchmark_corpus.pdf::chunk-4"
+    ]
+  }
+]
