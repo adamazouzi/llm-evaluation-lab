@@ -3,13 +3,13 @@
   "corpus_pdf": "data/demo/pdf_benchmark_corpus.pdf",
   "annotations_file": "data/demo/pdf_benchmark_questions.json",
   "corpus_chunks": 5,
-  "queries_evaluated": 5,
+  "queries_evaluated": 15,
   "k": 3,
   "methods": {
     "tfidf": {
       "description": "Lexical retrieval using TF-IDF",
       "metrics": {
-        "queries_evaluated": 5,
+        "queries_evaluated": 15,
         "k": 3,
         "precision_at_k": 0.3333333333333333,
         "recall_at_k": 1.0,
@@ -49,6 +49,70 @@
           ]
         },
         {
+          "query": "Which tasks can be automated using Python?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-0"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.539353,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.0,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.0,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "Which programming language is useful for web development and data analysis?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-0"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.750765,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.187122,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.060878,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
           "query": "How does machine learning learn patterns?",
           "relevant_chunk_ids": [
             "pdf_benchmark_corpus.pdf::chunk-1"
@@ -75,6 +139,70 @@
               "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
               "document_name": "pdf_benchmark_corpus.pdf",
               "page_number": 1,
+              "score": 0.0,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "What can a machine learning model do with data?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-1"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.514793,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.257335,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.221967,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How can computers make predictions from examples?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-1"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.460424,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.0,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
               "score": 0.0,
               "is_relevant": false
             }
@@ -113,6 +241,70 @@
           ]
         },
         {
+          "query": "What helps maintain reliable data flows between systems?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.610595,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.065133,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.064203,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "Which discipline builds pipelines to move data between systems?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.630305,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.107755,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.054658,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
           "query": "How do neural networks learn complex patterns?",
           "relevant_chunk_ids": [
             "pdf_benchmark_corpus.pdf::chunk-3"
@@ -145,6 +337,70 @@
           ]
         },
         {
+          "query": "What is deep learning based on?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.517543,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.212547,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.165632,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "What role do multiple layers play in learning patterns?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.555151,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.285671,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.0,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
           "query": "How does RAG generate grounded answers?",
           "relevant_chunk_ids": [
             "pdf_benchmark_corpus.pdf::chunk-4"
@@ -155,7 +411,7 @@
               "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
               "document_name": "pdf_benchmark_corpus.pdf",
               "page_number": 5,
-              "score": 0.396054,
+              "score": 0.52075,
               "is_relevant": true
             },
             {
@@ -175,6 +431,70 @@
               "is_relevant": false
             }
           ]
+        },
+        {
+          "query": "Which approach combines document retrieval and a language model?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.639006,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.15247,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.073763,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How can a language model use retrieved documents to answer a question?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.377268,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.121148,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.082285,
+              "is_relevant": false
+            }
+          ]
         }
       ]
     },
@@ -182,7 +502,7 @@
       "description": "Embedding retrieval using sentence-transformers/all-MiniLM-L6-v2",
       "model": "sentence-transformers/all-MiniLM-L6-v2",
       "metrics": {
-        "queries_evaluated": 5,
+        "queries_evaluated": 15,
         "k": 3,
         "precision_at_k": 0.3333333333333333,
         "recall_at_k": 1.0,
@@ -222,6 +542,70 @@
           ]
         },
         {
+          "query": "Which tasks can be automated using Python?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-0"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.603002,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.241645,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.207064,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "Which programming language is useful for web development and data analysis?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-0"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.544913,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.379501,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.182054,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
           "query": "How does machine learning learn patterns?",
           "relevant_chunk_ids": [
             "pdf_benchmark_corpus.pdf::chunk-1"
@@ -249,6 +633,70 @@
               "document_name": "pdf_benchmark_corpus.pdf",
               "page_number": 3,
               "score": 0.201848,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "What can a machine learning model do with data?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-1"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.631054,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.389437,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.388266,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How can computers make predictions from examples?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-1"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.539903,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.361051,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.190026,
               "is_relevant": false
             }
           ]
@@ -286,6 +734,70 @@
           ]
         },
         {
+          "query": "What helps maintain reliable data flows between systems?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.518166,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.134991,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.094424,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "Which discipline builds pipelines to move data between systems?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.578547,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.227818,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.191373,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
           "query": "How do neural networks learn complex patterns?",
           "relevant_chunk_ids": [
             "pdf_benchmark_corpus.pdf::chunk-3"
@@ -312,7 +824,71 @@
               "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
               "document_name": "pdf_benchmark_corpus.pdf",
               "page_number": 5,
-              "score": 0.102671,
+              "score": 0.103557,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "What is deep learning based on?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.700262,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.433376,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.206645,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "What role do multiple layers play in learning patterns?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.667561,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.388634,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.095817,
               "is_relevant": false
             }
           ]
@@ -328,7 +904,7 @@
               "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
               "document_name": "pdf_benchmark_corpus.pdf",
               "page_number": 5,
-              "score": 0.469238,
+              "score": 0.632554,
               "is_relevant": true
             },
             {
@@ -345,6 +921,70 @@
               "document_name": "pdf_benchmark_corpus.pdf",
               "page_number": 4,
               "score": 0.044233,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "Which approach combines document retrieval and a language model?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.499445,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.181922,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.177498,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How can a language model use retrieved documents to answer a question?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.540591,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.22869,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.160206,
               "is_relevant": false
             }
           ]

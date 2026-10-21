@@ -115,9 +115,26 @@ def create_demo_pdf(path: Path) -> None:
     with pymupdf.open() as document:
         for title, content in DEMO_PAGES:
             page = document.new_page()
-            page.insert_text((72, 72), f"{title}\n\n{content}", fontsize=12)
-        document.save(path)
+            page.insert_text(
+                (72, 72),
+                title,
+                fontsize=14,
+            )
 
+            text_box = pymupdf.Rect(72, 105, 540, 760)
+            remaining_space = page.insert_textbox(
+                text_box,
+                content,
+                fontsize=12,
+                lineheight=1.4,
+            )
+
+            if remaining_space < 0:
+                raise ValueError(
+                    f"Text does not fit on the demo PDF page: {title}"
+                )
+
+        document.save(path)
 
 def load_questions(path: Path) -> list[dict]:
     """Load and validate annotated questions from JSON."""

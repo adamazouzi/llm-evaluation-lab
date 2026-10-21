@@ -1,32 +1,63 @@
+
 [
   {
     "query": "What can Python be used for?",
-    "relevant_chunk_ids": [
-      "pdf_benchmark_corpus.pdf::chunk-0"
-    ]
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-0"]
+  },
+  {
+    "query": "Which tasks can be automated using Python?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-0"]
+  },
+  {
+    "query": "Which programming language is useful for web development and data analysis?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-0"]
   },
   {
     "query": "How does machine learning learn patterns?",
-    "relevant_chunk_ids": [
-      "pdf_benchmark_corpus.pdf::chunk-1"
-    ]
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-1"]
+  },
+  {
+    "query": "What can a machine learning model do with data?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-1"]
+  },
+  {
+    "query": "How can computers make predictions from examples?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-1"]
   },
   {
     "query": "What is the purpose of data engineering?",
-    "relevant_chunk_ids": [
-      "pdf_benchmark_corpus.pdf::chunk-2"
-    ]
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-2"]
+  },
+  {
+    "query": "What helps maintain reliable data flows between systems?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-2"]
+  },
+  {
+    "query": "Which discipline builds pipelines to move data between systems?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-2"]
   },
   {
     "query": "How do neural networks learn complex patterns?",
-    "relevant_chunk_ids": [
-      "pdf_benchmark_corpus.pdf::chunk-3"
-    ]
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-3"]
+  },
+  {
+    "query": "What is deep learning based on?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-3"]
+  },
+  {
+    "query": "What role do multiple layers play in learning patterns?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-3"]
   },
   {
     "query": "How does RAG generate grounded answers?",
-    "relevant_chunk_ids": [
-      "pdf_benchmark_corpus.pdf::chunk-4"
-    ]
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-4"]
+  },
+  {
+    "query": "Which approach combines document retrieval and a language model?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-4"]
+  },
+  {
+    "query": "How can a language model use retrieved documents to answer a question?",
+    "relevant_chunk_ids": ["pdf_benchmark_corpus.pdf::chunk-4"]
   }
 ]

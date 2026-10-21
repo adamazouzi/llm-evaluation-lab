@@ -144,9 +144,9 @@
           "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
           "document_name": "pdf_benchmark_corpus.pdf",
           "page_number": 5,
-          "score": 0.1027,
+          "score": 0.1036,
           "is_relevant": false,
-          "text": "RAG Retrieval augmented generation combines document retrieval with a language model to generate g"
+          "text": "RAG Retrieval augmented generation combines document retrieval with a language model to generate grounded answers."
         }
       ]
     },
@@ -161,9 +161,9 @@
           "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
           "document_name": "pdf_benchmark_corpus.pdf",
           "page_number": 5,
-          "score": 0.4692,
+          "score": 0.6326,
           "is_relevant": true,
-          "text": "RAG Retrieval augmented generation combines document retrieval with a language model to generate g"
+          "text": "RAG Retrieval augmented generation combines document retrieval with a language model to generate grounded answers."
         },
         {
           "rank": 2,
