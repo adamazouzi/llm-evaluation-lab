@@ -1,0 +1,162 @@
+{
+  "benchmark_type": "real_embedding_demo",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "corpus_chunks": 5,
+  "queries_evaluated": 5,
+  "k": 3,
+  "precision_at_k": 0.3333333333333333,
+  "recall_at_k": 1.0,
+  "mrr": 1.0,
+  "query_results": [
+    {
+      "query": "What is Python used for?",
+      "relevant_chunk_ids": [
+        "python"
+      ],
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "chunk_id": "python",
+          "score": 0.8347,
+          "is_relevant": true,
+          "text": "Python is a programming language widely used for automation, web development, and data analysis."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "machine-learning",
+          "score": 0.2229,
+          "is_relevant": false,
+          "text": "Machine learning is a branch of artificial intelligence that learns patterns from data."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "data-engineering",
+          "score": 0.1945,
+          "is_relevant": false,
+          "text": "Data engineering focuses on collecting, transforming, and preparing reliable data pipelines."
+        }
+      ],
+      "first_result_is_relevant": true
+    },
+    {
+      "query": "How does machine learning work?",
+      "relevant_chunk_ids": [
+        "machine-learning"
+      ],
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "chunk_id": "machine-learning",
+          "score": 0.7223,
+          "is_relevant": true,
+          "text": "Machine learning is a branch of artificial intelligence that learns patterns from data."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deep-learning",
+          "score": 0.4647,
+          "is_relevant": false,
+          "text": "Deep learning uses neural networks with multiple layers to learn complex patterns."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "data-engineering",
+          "score": 0.1838,
+          "is_relevant": false,
+          "text": "Data engineering focuses on collecting, transforming, and preparing reliable data pipelines."
+        }
+      ],
+      "first_result_is_relevant": true
+    },
+    {
+      "query": "What is data engineering?",
+      "relevant_chunk_ids": [
+        "data-engineering"
+      ],
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "chunk_id": "data-engineering",
+          "score": 0.712,
+          "is_relevant": true,
+          "text": "Data engineering focuses on collecting, transforming, and preparing reliable data pipelines."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "machine-learning",
+          "score": 0.4591,
+          "is_relevant": false,
+          "text": "Machine learning is a branch of artificial intelligence that learns patterns from data."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "python",
+          "score": 0.371,
+          "is_relevant": false,
+          "text": "Python is a programming language widely used for automation, web development, and data analysis."
+        }
+      ],
+      "first_result_is_relevant": true
+    },
+    {
+      "query": "What are deep neural networks?",
+      "relevant_chunk_ids": [
+        "deep-learning"
+      ],
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "chunk_id": "deep-learning",
+          "score": 0.6681,
+          "is_relevant": true,
+          "text": "Deep learning uses neural networks with multiple layers to learn complex patterns."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "machine-learning",
+          "score": 0.4374,
+          "is_relevant": false,
+          "text": "Machine learning is a branch of artificial intelligence that learns patterns from data."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "data-engineering",
+          "score": 0.1459,
+          "is_relevant": false,
+          "text": "Data engineering focuses on collecting, transforming, and preparing reliable data pipelines."
+        }
+      ],
+      "first_result_is_relevant": true
+    },
+    {
+      "query": "What is retrieval augmented generation?",
+      "relevant_chunk_ids": [
+        "rag"
+      ],
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "chunk_id": "rag",
+          "score": 0.6865,
+          "is_relevant": true,
+          "text": "Retrieval augmented generation combines document retrieval with a language model to generate grounded answers."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deep-learning",
+          "score": 0.1947,
+          "is_relevant": false,
+          "text": "Deep learning uses neural networks with multiple layers to learn complex patterns."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "data-engineering",
+          "score": 0.1816,
+          "is_relevant": false,
+          "text": "Data engineering focuses on collecting, transforming, and preparing reliable data pipelines."
+        }
+      ],
+      "first_result_is_relevant": true
+    }
+  ]
+}

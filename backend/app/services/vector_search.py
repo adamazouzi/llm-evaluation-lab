@@ -1,3 +1,4 @@
+
 """Local semantic search using sentence embeddings."""
 
 from dataclasses import dataclass
@@ -8,6 +9,8 @@ from sentence_transformers import SentenceTransformer
 
 @dataclass(frozen=True)
 class SearchResult:
+    """A retrieved text chunk with its similarity score and metadata."""
+
     text: str
     score: float
     metadata: dict
@@ -25,7 +28,12 @@ class VectorSearch:
         self.metadata: list[dict] = []
         self.embeddings: np.ndarray | None = None
 
-    def index(self, chunks: list[str], metadata: list[dict] | None = None) -> None:
+    def index(
+        self,
+        chunks: list[str],
+        metadata: list[dict] | None = None,
+    ) -> None:
+        """Encode chunks and associate each one with a stable identifier."""
         if not chunks:
             raise ValueError("chunks must not be empty")
 
@@ -36,7 +44,22 @@ class VectorSearch:
             raise ValueError("metadata and chunks must have the same length")
 
         self.chunks = chunks
-        self.metadata = metadata if metadata is not None else [{} for _ in chunks]
+
+        if metadata is None:
+            self.metadata = [
+                {"chunk_id": f"chunk-{i}"}
+                for i in range(len(chunks))
+            ]
+        else:
+            self.metadata = []
+
+            for i, item in enumerate(metadata):
+                chunk_metadata = dict(item)
+
+                if not chunk_metadata.get("chunk_id"):
+                    chunk_metadata["chunk_id"] = f"chunk-{i}"
+
+                self.metadata.append(chunk_metadata)
 
         self.embeddings = self.model.encode(
             chunks,
@@ -45,6 +68,7 @@ class VectorSearch:
         )
 
     def search(self, query: str, top_k: int = 3) -> list[SearchResult]:
+        """Return the top-k chunks ranked by cosine similarity."""
         if self.embeddings is None:
             raise RuntimeError("Index some chunks before searching")
 
