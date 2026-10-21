@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rapport interactif comparant la recherche TF-IDF et la recherche sémantique sur un corpus de documents PDF.">
+  <title>LLM Evaluation Lab — Rapport de benchmark</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --surface: #ffffff;
+      --background: #f5f7fb;
+      --accent: #3659d9;
+      --accent-soft: #edf1ff;
+      --good: #16794b;
+      --good-soft: #e9f8f0;
+      --bad: #a83a3a;
+      --bad-soft: #fff0f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    header {
+      background: #111b32;
+      color: #fff;
+      padding: 42px 0 36px;
+    }
+    .eyebrow {
+      color: #aebfff;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    h1 { margin: 10px 0; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; }
+    header p { max-width: 760px; color: #d7def0; margin-bottom: 0; }
+    main { padding: 28px 0 56px; }
+    section { margin-bottom: 30px; }
+    h2 { font-size: 1.35rem; margin: 0 0 14px; }
+    .section-intro { color: var(--muted); margin: -5px 0 16px; }
+    .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .card, .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(20, 35, 70, .035);
+    }
+    .card-label { color: var(--muted); font-size: .88rem; }
+    .card-value { font-size: 1.8rem; font-weight: 750; margin-top: 5px; }
+    .card-detail { color: var(--muted); font-size: .82rem; overflow-wrap: anywhere; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; min-width: 540px; }
+    th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); }
+    thead th { color: var(--muted); font-size: .82rem; font-weight: 650; }
+    tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+    .metric-name, .metric-description { display: block; }
+    .metric-description { color: var(--muted); font-size: .8rem; font-weight: 400; }
+    .numeric { font-variant-numeric: tabular-nums; text-align: right; }
+    .difference { font-weight: 700; }
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) minmax(180px, .45fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    label { display: block; font-size: .86rem; font-weight: 650; margin-bottom: 6px; }
+    input, select {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 11px 12px;
+      font: inherit;
+      background: white;
+      color: var(--ink);
+    }
+    input:focus, select:focus, button:focus-visible {
+      outline: 3px solid #b9c7ff;
+      outline-offset: 2px;
+    }
+    .results-count { color: var(--muted); font-size: .88rem; margin-bottom: 12px; }
+    .question {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .question summary {
+      padding: 16px 18px;
+      cursor: pointer;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+    .question summary:hover { background: #f8faff; }
+    .question-body { border-top: 1px solid var(--line); padding: 16px; }
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .method-title { font-size: 1rem; margin: 0 0 10px; }
+    .method-subtitle { color: var(--muted); font-size: .8rem; margin: -7px 0 12px; }
+    .chunk {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 9px;
+      min-width: 0;
+    }
+    .chunk.relevant { border-color: #9ad5b7; background: var(--good-soft); }
+    .chunk.irrelevant { background: #fbfcfe; }
+    .chunk-top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+    .rank { font-weight: 750; }
+    .status { font-size: .75rem; font-weight: 750; border-radius: 99px; padding: 3px 8px; }
+    .status.good { background: #d0f0df; color: var(--good); }
+    .status.bad { background: #edf0f5; color: #475569; }
+    .chunk-name { font-size: .84rem; font-weight: 650; overflow-wrap: anywhere; margin-top: 8px; }
+    .chunk-meta { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+    .score-track { background: #e9edf5; height: 5px; border-radius: 10px; margin-top: 10px; overflow: hidden; }
+    .score-fill { height: 100%; background: var(--accent); border-radius: 10px; }
+    .empty { padding: 24px; color: var(--muted); text-align: center; }
+    .method-note { color: var(--muted); font-size: .88rem; }
+    footer { color: var(--muted); font-size: .82rem; padding: 18px 0 0; border-top: 1px solid var(--line); }
+    @media (max-width: 760px) {
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .columns { grid-template-columns: 1fr; }
+      .controls { grid-template-columns: 1fr; }
+      header { padding: 32px 0; }
+    }
+    @media (max-width: 400px) {
+      .cards { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .card { padding: 14px; }
+      .card-value { font-size: 1.45rem; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="eyebrow">LLM Evaluation Lab · Retrieval benchmark</div>
+    <h1>Comparer les stratégies de recherche</h1>
+    <p>Évaluation reproductible de la recherche lexicale TF-IDF et de la recherche sémantique sur un corpus de PDF, avec des questions annotées et des résultats inspectables.</p>
+  </div>
+</header>
+
+<main class="container">
+  <section aria-labelledby="overview-title">
+    <h2 id="overview-title">Vue d'ensemble</h2>
+    <div class="cards">
+      <article class="card">
+        <div class="card-label">Documents PDF</div>
+        <div class="card-value">4</div>
+        <div class="card-detail">Corpus multi-document</div>
+      </article>
+      <article class="card">
+        <div class="card-label">Chunks indexés</div>
+        <div class="card-value">12</div>
+        <div class="card-detail">Segments extraits des PDF</div>
+      </article>
+      <article class="card">
+        <div class="card-label">Questions évaluées</div>
+        <div class="card-value">24</div>
+        <div class="card-detail">Jeu de questions annotées</div>
+      </article>
+      <article class="card">
+        <div class="card-label">Top-k</div>
+        <div class="card-value">3</div>
+        <div class="card-detail">Résultats analysés par question</div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="metrics-title">
+    <h2 id="metrics-title">Comparaison des métriques</h2>
+    <p class="section-intro">Les scores sont calculés sur le même jeu de questions. Une valeur MRR plus élevée indique que le premier résultat pertinent apparaît généralement plus haut dans le classement.</p>
+    <div class="panel table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Métrique</th><th scope="col" class="numeric">TF-IDF</th><th scope="col" class="numeric">Sémantique</th><th scope="col" class="numeric">Écart (sémantique − TF-IDF)</th></tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <th scope="row">
+                <span class="metric-name">Precision@3</span>
+                <span class="metric-description">Part des résultats retrouvés qui sont pertinents.</span>
+              </th>
+              <td class="numeric">0.333</td>
+              <td class="numeric">0.333</td>
+              <td class="numeric difference">+0.000</td>
+            </tr>
+            
+            <tr>
+              <th scope="row">
+                <span class="metric-name">Recall@3</span>
+                <span class="metric-description">Part des éléments pertinents retrouvés dans le top-k.</span>
+              </th>
+              <td class="numeric">1.000</td>
+              <td class="numeric">1.000</td>
+              <td class="numeric difference">+0.000</td>
+            </tr>
+            
+            <tr>
+              <th scope="row">
+                <span class="metric-name">MRR</span>
+                <span class="metric-description">Rang du premier résultat pertinent, résumé sur les questions.</span>
+              </th>
+              <td class="numeric">0.951</td>
+              <td class="numeric">0.979</td>
+              <td class="numeric difference">+0.028</td>
+            </tr>
+            
+        </tbody>
+      </table>
+    </div>
+    <p class="method-note">Modèle sémantique : <code>sentence-transformers/all-MiniLM-L6-v2</code>. Les scores de similarité des deux méthodes ne sont pas directement comparables entre eux ; compare plutôt leur pertinence et leur classement.</p>
+  </section>
+
+  <section aria-labelledby="questions-title">
+    <h2 id="questions-title">Explorer les résultats question par question</h2>
+    <p class="section-intro">Ouvre une question pour comparer les chunks retournés par les deux méthodes. Les résultats pertinents sont mis en évidence.</p>
+    <div class="controls">
+      <div>
+        <label for="search">Rechercher une question ou un document</label>
+        <input id="search" type="search" placeholder="Ex. embeddings, Python, rag_guide.pdf">
+      </div>
+      <div>
+        <label for="relevance-filter">Filtrer les questions</label>
+        <select id="relevance-filter">
+          <option value="all">Toutes les questions</option>
+          <option value="both">Les deux méthodes trouvent un résultat pertinent au rang 1</option>
+          <option value="semantic">Sémantique meilleure en rang réciproque</option>
+          <option value="tfidf">TF-IDF meilleur en rang réciproque</option>
+        </select>
+      </div>
+    </div>
+    <div id="results-count" class="results-count" aria-live="polite"></div>
+    <div id="questions"></div>
+  </section>
+
+  <section aria-labelledby="corpus-title">
+    <h2 id="corpus-title">Corpus utilisé</h2>
+    <div class="panel">
+      <ul><li><code>data_engineering_guide.pdf</code></li><li><code>machine_learning_guide.pdf</code></li><li><code>python_guide.pdf</code></li><li><code>rag_guide.pdf</code></li></ul>
+      <p class="method-note">Répertoire source : <code>data/demo/multi_doc_corpus</code></p>
+    </div>
+  </section>
+
+  <footer>
+    Rapport généré localement par le script Python du projet. Les résultats présentés proviennent du fichier JSON du benchmark ; cette page ne relance pas les modèles.
+  </footer>
+</main>
+
+<script id="benchmark-data" type="application/json">{"k": 3, "methods": {"tfidf": {"description": "Lexical retrieval using TF-IDF", "query_results": [{"query": "How can Python automate repetitive work?", "relevant_chunk_ids": ["python_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.457668, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.186863, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.142643, "is_relevant": false}]}, {"query": "Which tasks can Python scripts perform on files and spreadsheets?", "relevant_chunk_ids": ["python_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.528638, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.156446, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.125706, "is_relevant": false}]}, {"query": "How can a script interact with external services?", "relevant_chunk_ids": ["python_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.244075, "is_relevant": false}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.087123, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.084595, "is_relevant": true}]}, {"query": "Which Python frameworks can be used to build web applications?", "relevant_chunk_ids": ["python_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.513094, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.237045, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.16868, "is_relevant": false}]}, {"query": "How can a web application communicate with a database?", "relevant_chunk_ids": ["python_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.483867, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.056635, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.054992, "is_relevant": false}]}, {"query": "Which Python libraries help analyze numerical datasets?", "relevant_chunk_ids": ["python_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.489074, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.128841, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.117761, "is_relevant": false}]}, {"query": "How does supervised machine learning make predictions?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.454967, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.17136, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.102915, "is_relevant": false}]}, {"query": "What is the role of labeled examples in machine learning?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.374126, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.176036, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.16359, "is_relevant": false}]}, {"query": "How does a model learn relationships between features and targets?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.316791, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.139987, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.092941, "is_relevant": false}]}, {"query": "Why should a model be evaluated on unseen data?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.442336, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.120361, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.1166, "is_relevant": false}]}, {"query": "Which metrics can measure classification performance?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.349077, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.056635, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.054992, "is_relevant": false}]}, {"query": "What problem occurs when a model performs poorly on new examples?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.548877, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.137094, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.106287, "is_relevant": false}]}, {"query": "What are the main stages of a data pipeline?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.208156, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.207464, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.104161, "is_relevant": false}]}, {"query": "How can information be moved and transformed between systems?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.23815, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.133614, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.122984, "is_relevant": false}]}, {"query": "What does a data pipeline do before loading information into its destination?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.379966, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.191605, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.10421, "is_relevant": false}]}, {"query": "When is batch processing useful?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.516628, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.071504, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.065107, "is_relevant": false}]}, {"query": "How can nightly reporting process accumulated records?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.323641, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.122874, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.119308, "is_relevant": false}]}, {"query": "Which checks can detect duplicate or incomplete records?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.429746, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.108828, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.065446, "is_relevant": false}]}, {"query": "How does RAG use documents to generate an answer?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.295129, "is_relevant": false}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.248627, "is_relevant": true}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.118728, "is_relevant": false}]}, {"query": "What supplies a language model with relevant passages?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.34508, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.0974, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.091547, "is_relevant": false}]}, {"query": "How can a search system find conceptually related passages when wording differs?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.551433, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.085837, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.05162, "is_relevant": false}]}, {"query": "What is a text embedding represented as?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.265989, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.073703, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.071564, "is_relevant": false}]}, {"query": "Does retrieved context guarantee that an answer is correct?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.463516, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.096221, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.071711, "is_relevant": false}]}, {"query": "Which factors can affect RAG quality?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.295146, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.275379, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.109114, "is_relevant": false}]}]}, "semantic": {"description": "Embedding retrieval using sentence-transformers/all-MiniLM-L6-v2", "query_results": [{"query": "How can Python automate repetitive work?", "relevant_chunk_ids": ["python_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.705772, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.337751, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.331405, "is_relevant": false}]}, {"query": "Which tasks can Python scripts perform on files and spreadsheets?", "relevant_chunk_ids": ["python_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.69132, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.490092, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.417595, "is_relevant": false}]}, {"query": "How can a script interact with external services?", "relevant_chunk_ids": ["python_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.234945, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.205546, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.151614, "is_relevant": false}]}, {"query": "Which Python frameworks can be used to build web applications?", "relevant_chunk_ids": ["python_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.831784, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.422542, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.401095, "is_relevant": false}]}, {"query": "How can a web application communicate with a database?", "relevant_chunk_ids": ["python_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.445821, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.259032, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.224688, "is_relevant": false}]}, {"query": "Which Python libraries help analyze numerical datasets?", "relevant_chunk_ids": ["python_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.769419, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-1", "document_name": "python_guide.pdf", "page_number": 2, "score": 0.413709, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.408813, "is_relevant": false}]}, {"query": "How does supervised machine learning make predictions?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.653027, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.390101, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.293145, "is_relevant": false}]}, {"query": "What is the role of labeled examples in machine learning?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.810719, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.390922, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.366223, "is_relevant": false}]}, {"query": "How does a model learn relationships between features and targets?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.540367, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.291244, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.285894, "is_relevant": false}]}, {"query": "Why should a model be evaluated on unseen data?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.467093, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.299175, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.281822, "is_relevant": false}]}, {"query": "Which metrics can measure classification performance?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.563188, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.300652, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.23996, "is_relevant": false}]}, {"query": "What problem occurs when a model performs poorly on new examples?", "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "machine_learning_guide.pdf::chunk-2", "document_name": "machine_learning_guide.pdf", "page_number": 3, "score": 0.391069, "is_relevant": true}, {"rank": 2, "chunk_id": "machine_learning_guide.pdf::chunk-1", "document_name": "machine_learning_guide.pdf", "page_number": 2, "score": 0.373532, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.290387, "is_relevant": false}]}, {"query": "What are the main stages of a data pipeline?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.731205, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.36199, "is_relevant": false}, {"rank": 3, "chunk_id": "python_guide.pdf::chunk-2", "document_name": "python_guide.pdf", "page_number": 3, "score": 0.311395, "is_relevant": false}]}, {"query": "How can information be moved and transformed between systems?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.337407, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.1974, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.179078, "is_relevant": false}]}, {"query": "What does a data pipeline do before loading information into its destination?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.77686, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.344812, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.32152, "is_relevant": false}]}, {"query": "When is batch processing useful?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.725746, "is_relevant": true}, {"rank": 2, "chunk_id": "python_guide.pdf::chunk-0", "document_name": "python_guide.pdf", "page_number": 1, "score": 0.331251, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.303306, "is_relevant": false}]}, {"query": "How can nightly reporting process accumulated records?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.589035, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.20864, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-0", "document_name": "data_engineering_guide.pdf", "page_number": 1, "score": 0.181864, "is_relevant": false}]}, {"query": "Which checks can detect duplicate or incomplete records?", "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.610485, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.253996, "is_relevant": false}, {"rank": 3, "chunk_id": "data_engineering_guide.pdf::chunk-1", "document_name": "data_engineering_guide.pdf", "page_number": 2, "score": 0.169182, "is_relevant": false}]}, {"query": "How does RAG use documents to generate an answer?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.676118, "is_relevant": false}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.628432, "is_relevant": true}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.317773, "is_relevant": false}]}, {"query": "What supplies a language model with relevant passages?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-0"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.433032, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.387961, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.313616, "is_relevant": false}]}, {"query": "How can a search system find conceptually related passages when wording differs?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.678457, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.445284, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.318586, "is_relevant": false}]}, {"query": "What is a text embedding represented as?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-1"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.632551, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.338813, "is_relevant": false}, {"rank": 3, "chunk_id": "machine_learning_guide.pdf::chunk-0", "document_name": "machine_learning_guide.pdf", "page_number": 1, "score": 0.278532, "is_relevant": false}]}, {"query": "Does retrieved context guarantee that an answer is correct?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.409245, "is_relevant": true}, {"rank": 2, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.376324, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-1", "document_name": "rag_guide.pdf", "page_number": 2, "score": 0.212766, "is_relevant": false}]}, {"query": "Which factors can affect RAG quality?", "relevant_chunk_ids": ["rag_guide.pdf::chunk-2"], "retrieved_chunks": [{"rank": 1, "chunk_id": "rag_guide.pdf::chunk-2", "document_name": "rag_guide.pdf", "page_number": 3, "score": 0.684986, "is_relevant": true}, {"rank": 2, "chunk_id": "data_engineering_guide.pdf::chunk-2", "document_name": "data_engineering_guide.pdf", "page_number": 3, "score": 0.188762, "is_relevant": false}, {"rank": 3, "chunk_id": "rag_guide.pdf::chunk-0", "document_name": "rag_guide.pdf", "page_number": 1, "score": 0.173082, "is_relevant": false}]}]}}}</script>
+<script>
+(() => {
+  "use strict";
+  const data = JSON.parse(document.getElementById("benchmark-data").textContent);
+  const searchInput = document.getElementById("search");
+  const filterInput = document.getElementById("relevance-filter");
+  const questionsElement = document.getElementById("questions");
+  const countElement = document.getElementById("results-count");
+  const methods = ["tfidf", "semantic"];
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[char]));
+  }
+
+  function reciprocalRank(result) {
+    const relevant = result.retrieved_chunks.find(chunk => chunk.is_relevant);
+    return relevant ? 1 / relevant.rank : 0;
+  }
+
+  function getEntries() {
+    const first = data.methods.tfidf.query_results;
+    const semantic = data.methods.semantic.query_results;
+    const semanticByQuery = new Map(semantic.map(item => [item.query, item]));
+    return first.map(item => ({
+      query: item.query,
+      tfidf: item,
+      semantic: semanticByQuery.get(item.query)
+    })).filter(item => item.semantic);
+  }
+
+  function renderChunk(chunk) {
+    const relevant = Boolean(chunk.is_relevant);
+    const score = Number(chunk.score) || 0;
+    const barWidth = Math.max(0, Math.min(100, score * 100));
+    return `
+      <article class="chunk ${relevant ? "relevant" : "irrelevant"}">
+        <div class="chunk-top">
+          <span class="rank">Rang #${escapeHtml(chunk.rank)}</span>
+          <span class="status ${relevant ? "good" : "bad"}">${relevant ? "Pertinent" : "Non pertinent"}</span>
+        </div>
+        <div class="chunk-name">${escapeHtml(chunk.document_name)}</div>
+        <div class="chunk-meta">Page ${escapeHtml(chunk.page_number)} · Score : ${score.toFixed(4)}</div>
+        <div class="chunk-meta">${escapeHtml(chunk.chunk_id)}</div>
+        <div class="score-track" aria-label="Score relatif affiché à titre visuel">
+          <div class="score-fill" style="width: ${barWidth}%"></div>
+        </div>
+      </article>`;
+  }
+
+  function renderMethod(method, result) {
+    const label = method === "tfidf" ? "TF-IDF" : "Recherche sémantique";
+    const chunks = result.retrieved_chunks || [];
+    return `
+      <div>
+        <h4 class="method-title">${label}</h4>
+        <p class="method-subtitle">${escapeHtml(chunks.length)} résultat(s) retourné(s)</p>
+        ${chunks.length ? chunks.map(renderChunk).join("") : '<p class="method-note">Aucun résultat retourné.</p>'}
+      </div>`;
+  }
+
+  function matchesFilter(entry, filter) {
+    const left = reciprocalRank(entry.tfidf);
+    const right = reciprocalRank(entry.semantic);
+    if (filter === "both") {
+      return entry.tfidf.retrieved_chunks.some(c => c.rank === 1 && c.is_relevant)
+        && entry.semantic.retrieved_chunks.some(c => c.rank === 1 && c.is_relevant);
+    }
+    if (filter === "semantic") return right > left;
+    if (filter === "tfidf") return left > right;
+    return true;
+  }
+
+  function render() {
+    const query = searchInput.value.trim().toLowerCase();
+    const filter = filterInput.value;
+    const entries = getEntries().filter(entry => {
+      const searchable = [
+        entry.query,
+        ...entry.tfidf.retrieved_chunks.map(chunk => chunk.document_name),
+        ...entry.semantic.retrieved_chunks.map(chunk => chunk.document_name)
+      ].join(" ").toLowerCase();
+      return searchable.includes(query) && matchesFilter(entry, filter);
+    });
+
+    countElement.textContent = `${entries.length} question(s) affichée(s) sur ${getEntries().length}.`;
+    if (!entries.length) {
+      questionsElement.innerHTML = '<div class="panel empty">Aucune question ne correspond à ces filtres.</div>';
+      return;
+    }
+
+    questionsElement.innerHTML = entries.map((entry, index) => `
+      <details class="question" ${index === 0 ? "open" : ""}>
+        <summary>${escapeHtml(entry.query)}</summary>
+        <div class="question-body">
+          <div class="columns">
+            ${renderMethod("tfidf", entry.tfidf)}
+            ${renderMethod("semantic", entry.semantic)}
+          </div>
+        </div>
+      </details>`).join("");
+  }
+
+  searchInput.addEventListener("input", render);
+  filterInput.addEventListener("change", render);
+  render();
+})();
+</script>
+</body>
+</html>
