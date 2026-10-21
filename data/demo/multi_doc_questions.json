@@ -1,0 +1,98 @@
+[
+  {
+    "query": "How can Python automate repetitive work?",
+    "relevant_chunk_ids": ["python_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "Which tasks can Python scripts perform on files and spreadsheets?",
+    "relevant_chunk_ids": ["python_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "How can a script interact with external services?",
+    "relevant_chunk_ids": ["python_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "Which Python frameworks can be used to build web applications?",
+    "relevant_chunk_ids": ["python_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "How can a web application communicate with a database?",
+    "relevant_chunk_ids": ["python_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "Which Python libraries help analyze numerical datasets?",
+    "relevant_chunk_ids": ["python_guide.pdf::chunk-2"]
+  },
+  {
+    "query": "How does supervised machine learning make predictions?",
+    "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "What is the role of labeled examples in machine learning?",
+    "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "How does a model learn relationships between features and targets?",
+    "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "Why should a model be evaluated on unseen data?",
+    "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "Which metrics can measure classification performance?",
+    "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "What problem occurs when a model performs poorly on new examples?",
+    "relevant_chunk_ids": ["machine_learning_guide.pdf::chunk-2"]
+  },
+  {
+    "query": "What are the main stages of a data pipeline?",
+    "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "How can information be moved and transformed between systems?",
+    "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "What does a data pipeline do before loading information into its destination?",
+    "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "When is batch processing useful?",
+    "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "How can nightly reporting process accumulated records?",
+    "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "Which checks can detect duplicate or incomplete records?",
+    "relevant_chunk_ids": ["data_engineering_guide.pdf::chunk-2"]
+  },
+  {
+    "query": "How does RAG use documents to generate an answer?",
+    "relevant_chunk_ids": ["rag_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "What supplies a language model with relevant passages?",
+    "relevant_chunk_ids": ["rag_guide.pdf::chunk-0"]
+  },
+  {
+    "query": "How can a search system find conceptually related passages when wording differs?",
+    "relevant_chunk_ids": ["rag_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "What is a text embedding represented as?",
+    "relevant_chunk_ids": ["rag_guide.pdf::chunk-1"]
+  },
+  {
+    "query": "Does retrieved context guarantee that an answer is correct?",
+    "relevant_chunk_ids": ["rag_guide.pdf::chunk-2"]
+  },
+  {
+    "query": "Which factors can affect RAG quality?",
+    "relevant_chunk_ids": ["rag_guide.pdf::chunk-2"]
+  }
+]
