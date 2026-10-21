@@ -1,0 +1,17 @@
+[
+  {
+    "query": "What is machine learning?",
+    "relevant_documents": ["ml.txt"],
+    "retrieved_documents": ["ml.txt", "python.txt", "data.txt"]
+  },
+  {
+    "query": "What is Python used for?",
+    "relevant_documents": ["python.txt"],
+    "retrieved_documents": ["data.txt", "python.txt", "ml.txt"]
+  },
+  {
+    "query": "What is data engineering?",
+    "relevant_documents": ["data.txt"],
+    "retrieved_documents": ["data.txt", "ml.txt", "python.txt"]
+  }
+]

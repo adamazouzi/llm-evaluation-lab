@@ -1,0 +1,7 @@
+{
+  "queries_evaluated": 3,
+  "k": 3,
+  "precision_at_k": 0.3333333333333333,
+  "recall_at_k": 1.0,
+  "mrr": 0.8333333333333334
+}
