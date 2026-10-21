@@ -1,0 +1,355 @@
+{
+  "benchmark_type": "retriever_comparison",
+  "corpus_pdf": "data/demo/pdf_benchmark_corpus.pdf",
+  "annotations_file": "data/demo/pdf_benchmark_questions.json",
+  "corpus_chunks": 5,
+  "queries_evaluated": 5,
+  "k": 3,
+  "methods": {
+    "tfidf": {
+      "description": "Lexical retrieval using TF-IDF",
+      "metrics": {
+        "queries_evaluated": 5,
+        "k": 3,
+        "precision_at_k": 0.3333333333333333,
+        "recall_at_k": 1.0,
+        "mrr": 1.0
+      },
+      "query_results": [
+        {
+          "query": "What can Python be used for?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-0"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.622791,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.0,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.0,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How does machine learning learn patterns?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-1"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.578254,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.414704,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.0,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "What is the purpose of data engineering?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.55788,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.24964,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.076194,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How do neural networks learn complex patterns?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.550375,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.080233,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.0,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How does RAG generate grounded answers?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.396054,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.0,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.0,
+              "is_relevant": false
+            }
+          ]
+        }
+      ]
+    },
+    "semantic": {
+      "description": "Embedding retrieval using sentence-transformers/all-MiniLM-L6-v2",
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "metrics": {
+        "queries_evaluated": 5,
+        "k": 3,
+        "precision_at_k": 0.3333333333333333,
+        "recall_at_k": 1.0,
+        "mrr": 1.0
+      },
+      "query_results": [
+        {
+          "query": "What can Python be used for?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-0"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.794604,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.175994,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.175169,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How does machine learning learn patterns?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-1"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.787067,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.583145,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.201848,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "What is the purpose of data engineering?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-2",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 3,
+              "score": 0.721117,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.311245,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-0",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 1,
+              "score": 0.294182,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How do neural networks learn complex patterns?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.711374,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.571497,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.102671,
+              "is_relevant": false
+            }
+          ]
+        },
+        {
+          "query": "How does RAG generate grounded answers?",
+          "relevant_chunk_ids": [
+            "pdf_benchmark_corpus.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-4",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 5,
+              "score": 0.469238,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-1",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 2,
+              "score": 0.06693,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "pdf_benchmark_corpus.pdf::chunk-3",
+              "document_name": "pdf_benchmark_corpus.pdf",
+              "page_number": 4,
+              "score": 0.044233,
+              "is_relevant": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
