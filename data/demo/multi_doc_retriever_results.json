@@ -14,12 +14,19 @@
   "methods": {
     "tfidf": {
       "description": "Lexical retrieval using TF-IDF",
+      "indexing_time_seconds": 0.008536,
       "metrics": {
         "queries_evaluated": 24,
         "k": 3,
         "precision_at_k": 0.3333333333333333,
         "recall_at_k": 1.0,
         "mrr": 0.9513888888888888
+      },
+      "performance": {
+        "total_search_time_seconds": 0.006643,
+        "average_search_time_ms": 0.2768,
+        "median_search_time_ms": 0.1861,
+        "queries_per_second": 3612.9387
       },
       "query_results": [
         {
@@ -52,7 +59,8 @@
               "score": 0.142643,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 2.0948
         },
         {
           "query": "Which tasks can Python scripts perform on files and spreadsheets?",
@@ -84,7 +92,8 @@
               "score": 0.125706,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.2725
         },
         {
           "query": "How can a script interact with external services?",
@@ -116,7 +125,8 @@
               "score": 0.084595,
               "is_relevant": true
             }
-          ]
+          ],
+          "search_time_ms": 0.2358
         },
         {
           "query": "Which Python frameworks can be used to build web applications?",
@@ -148,7 +158,8 @@
               "score": 0.16868,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.2025
         },
         {
           "query": "How can a web application communicate with a database?",
@@ -180,7 +191,8 @@
               "score": 0.054992,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1916
         },
         {
           "query": "Which Python libraries help analyze numerical datasets?",
@@ -212,7 +224,8 @@
               "score": 0.117761,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1864
         },
         {
           "query": "How does supervised machine learning make predictions?",
@@ -244,7 +257,8 @@
               "score": 0.102915,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1841
         },
         {
           "query": "What is the role of labeled examples in machine learning?",
@@ -276,7 +290,8 @@
               "score": 0.16359,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1846
         },
         {
           "query": "How does a model learn relationships between features and targets?",
@@ -308,7 +323,8 @@
               "score": 0.092941,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1748
         },
         {
           "query": "Why should a model be evaluated on unseen data?",
@@ -340,7 +356,8 @@
               "score": 0.1166,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.163
         },
         {
           "query": "Which metrics can measure classification performance?",
@@ -372,7 +389,8 @@
               "score": 0.054992,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1725
         },
         {
           "query": "What problem occurs when a model performs poorly on new examples?",
@@ -404,7 +422,8 @@
               "score": 0.106287,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1768
         },
         {
           "query": "What are the main stages of a data pipeline?",
@@ -436,7 +455,8 @@
               "score": 0.104161,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1782
         },
         {
           "query": "How can information be moved and transformed between systems?",
@@ -468,7 +488,8 @@
               "score": 0.122984,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1807
         },
         {
           "query": "What does a data pipeline do before loading information into its destination?",
@@ -500,7 +521,8 @@
               "score": 0.10421,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.3099
         },
         {
           "query": "When is batch processing useful?",
@@ -532,7 +554,8 @@
               "score": 0.065107,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.2273
         },
         {
           "query": "How can nightly reporting process accumulated records?",
@@ -564,7 +587,8 @@
               "score": 0.119308,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.2011
         },
         {
           "query": "Which checks can detect duplicate or incomplete records?",
@@ -596,7 +620,8 @@
               "score": 0.065446,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1867
         },
         {
           "query": "How does RAG use documents to generate an answer?",
@@ -628,7 +653,8 @@
               "score": 0.118728,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1852
         },
         {
           "query": "What supplies a language model with relevant passages?",
@@ -660,7 +686,8 @@
               "score": 0.091547,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.191
         },
         {
           "query": "How can a search system find conceptually related passages when wording differs?",
@@ -692,7 +719,8 @@
               "score": 0.05162,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1858
         },
         {
           "query": "What is a text embedding represented as?",
@@ -724,7 +752,8 @@
               "score": 0.071564,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1889
         },
         {
           "query": "Does retrieved context guarantee that an answer is correct?",
@@ -756,7 +785,8 @@
               "score": 0.071711,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.184
         },
         {
           "query": "Which factors can affect RAG quality?",
@@ -788,19 +818,27 @@
               "score": 0.109114,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 0.1845
         }
       ]
     },
     "semantic": {
       "description": "Embedding retrieval using sentence-transformers/all-MiniLM-L6-v2",
       "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "indexing_time_seconds": 1.10521,
       "metrics": {
         "queries_evaluated": 24,
         "k": 3,
         "precision_at_k": 0.3333333333333333,
         "recall_at_k": 1.0,
         "mrr": 0.9791666666666666
+      },
+      "performance": {
+        "total_search_time_seconds": 0.196466,
+        "average_search_time_ms": 8.1861,
+        "median_search_time_ms": 6.7942,
+        "queries_per_second": 122.1586
       },
       "query_results": [
         {
@@ -833,7 +871,8 @@
               "score": 0.331405,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 16.4545
         },
         {
           "query": "Which tasks can Python scripts perform on files and spreadsheets?",
@@ -865,7 +904,8 @@
               "score": 0.417595,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 9.5762
         },
         {
           "query": "How can a script interact with external services?",
@@ -897,7 +937,8 @@
               "score": 0.151614,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 8.0361
         },
         {
           "query": "Which Python frameworks can be used to build web applications?",
@@ -929,7 +970,8 @@
               "score": 0.401095,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 7.6263
         },
         {
           "query": "How can a web application communicate with a database?",
@@ -961,7 +1003,8 @@
               "score": 0.224688,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 9.0014
         },
         {
           "query": "Which Python libraries help analyze numerical datasets?",
@@ -993,7 +1036,8 @@
               "score": 0.408813,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.1111
         },
         {
           "query": "How does supervised machine learning make predictions?",
@@ -1025,7 +1069,8 @@
               "score": 0.293145,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.355
         },
         {
           "query": "What is the role of labeled examples in machine learning?",
@@ -1057,7 +1102,8 @@
               "score": 0.366223,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 7.6645
         },
         {
           "query": "How does a model learn relationships between features and targets?",
@@ -1089,7 +1135,8 @@
               "score": 0.285894,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 7.3038
         },
         {
           "query": "Why should a model be evaluated on unseen data?",
@@ -1121,7 +1168,8 @@
               "score": 0.281822,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.0924
         },
         {
           "query": "Which metrics can measure classification performance?",
@@ -1153,7 +1201,8 @@
               "score": 0.23996,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.3391
         },
         {
           "query": "What problem occurs when a model performs poorly on new examples?",
@@ -1185,7 +1234,8 @@
               "score": 0.290387,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.7124
         },
         {
           "query": "What are the main stages of a data pipeline?",
@@ -1217,7 +1267,8 @@
               "score": 0.311395,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.2328
         },
         {
           "query": "How can information be moved and transformed between systems?",
@@ -1249,7 +1300,8 @@
               "score": 0.179078,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.7388
         },
         {
           "query": "What does a data pipeline do before loading information into its destination?",
@@ -1281,7 +1333,8 @@
               "score": 0.32152,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.8496
         },
         {
           "query": "When is batch processing useful?",
@@ -1313,7 +1366,8 @@
               "score": 0.303306,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 23.3392
         },
         {
           "query": "How can nightly reporting process accumulated records?",
@@ -1345,7 +1399,8 @@
               "score": 0.181864,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.6353
         },
         {
           "query": "Which checks can detect duplicate or incomplete records?",
@@ -1377,7 +1432,8 @@
               "score": 0.169182,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.3902
         },
         {
           "query": "How does RAG use documents to generate an answer?",
@@ -1409,7 +1465,8 @@
               "score": 0.317773,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.5994
         },
         {
           "query": "What supplies a language model with relevant passages?",
@@ -1441,7 +1498,8 @@
               "score": 0.313616,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.2569
         },
         {
           "query": "How can a search system find conceptually related passages when wording differs?",
@@ -1473,7 +1531,8 @@
               "score": 0.318586,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 8.726
         },
         {
           "query": "What is a text embedding represented as?",
@@ -1505,7 +1564,8 @@
               "score": 0.278532,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.697
         },
         {
           "query": "Does retrieved context guarantee that an answer is correct?",
@@ -1537,7 +1597,8 @@
               "score": 0.212766,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 6.9483
         },
         {
           "query": "Which factors can affect RAG quality?",
@@ -1569,7 +1630,8 @@
               "score": 0.173082,
               "is_relevant": false
             }
-          ]
+          ],
+          "search_time_ms": 7.7794
         }
       ]
     }

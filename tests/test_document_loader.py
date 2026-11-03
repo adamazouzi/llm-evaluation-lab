@@ -1,3 +1,4 @@
+
 import pymupdf
 import pytest
 
@@ -66,3 +67,43 @@ def test_extract_pdf_text_rejects_empty_pdf(tmp_path):
 
     with pytest.raises(ValueError, match="no extractable text"):
         extract_pdf_text(pdf_path)
+
+
+def test_chunk_text_returns_empty_for_whitespace():
+    assert chunk_text("") == []
+    assert chunk_text("   \n\t  ") == []
+
+
+def test_chunk_text_normalizes_whitespace():
+    chunks = chunk_text(
+        "Hello   world\n\nfrom\tPython",
+        chunk_size=100,
+        overlap=20,
+    )
+
+    assert chunks == ["Hello world from Python"]
+
+
+def test_chunk_text_returns_single_chunk_for_short_text():
+    chunks = chunk_text(
+        "Short text",
+        chunk_size=100,
+        overlap=20,
+    )
+
+    assert chunks == ["Short text"]
+
+
+def test_load_pdf_chunks_preserves_page_numbers_and_global_indexes(tmp_path):
+    pdf_path = tmp_path / "multi_page.pdf"
+
+    create_test_pdf(
+        pdf_path,
+        ["First page content", "Second page content"],
+    )
+
+    chunks = load_pdf_chunks(pdf_path, chunk_size=100, overlap=10)
+
+    assert len(chunks) == 2
+    assert [chunk.page_number for chunk in chunks] == [1, 2]
+    assert [chunk.chunk_index for chunk in chunks] == [0, 1]

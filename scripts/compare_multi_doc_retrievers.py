@@ -1,13 +1,20 @@
+
 """Compare lexical and semantic retrieval on a multi-document PDF corpus."""
 
 import argparse
 import json
+import statistics
+import time
 from pathlib import Path
 
 from backend.app.services.document_loader import load_pdf_chunks
 from backend.app.services.keyword_search import TfidfSearch
 from backend.app.services.vector_search import VectorSearch
-from evaluation.evaluator import evaluate_retriever
+from evaluation.metrics.retrieval import (
+    mean_reciprocal_rank,
+    precision_at_k,
+    recall_at_k,
+)
 
 DEFAULT_CORPUS_DIR = Path("data/demo/multi_doc_corpus")
 DEFAULT_ANNOTATIONS = Path("data/demo/multi_doc_questions.json")
@@ -93,13 +100,37 @@ def evaluate_with_details(
     *,
     k: int,
 ) -> dict:
-    """Evaluate a retriever and retain per-query retrieval details."""
-    metrics = evaluate_retriever(retriever, questions, k=k)
+    """Evaluate retrieval quality and performance while retaining details."""
+    precisions = []
+    recalls = []
+    reciprocal_ranks = []
+    search_times = []
     query_results = []
 
     for question in questions:
         relevant_ids = set(question["relevant_chunk_ids"])
+
+        start_time = time.perf_counter()
         results = retriever.search(question["query"], top_k=k)
+        search_duration = time.perf_counter() - start_time
+
+        search_times.append(search_duration)
+
+        retrieved_ids = [
+            result.metadata["chunk_id"]
+            for result in results
+            if "chunk_id" in result.metadata
+        ]
+
+        precisions.append(
+            precision_at_k(retrieved_ids, relevant_ids, k)
+        )
+        recalls.append(
+            recall_at_k(retrieved_ids, relevant_ids, k)
+        )
+        reciprocal_ranks.append(
+            mean_reciprocal_rank(retrieved_ids, relevant_ids)
+        )
 
         query_results.append(
             {
@@ -109,7 +140,9 @@ def evaluate_with_details(
                     {
                         "rank": rank,
                         "chunk_id": result.metadata["chunk_id"],
-                        "document_name": result.metadata.get("document_name"),
+                        "document_name": result.metadata.get(
+                            "document_name"
+                        ),
                         "page_number": result.metadata.get("page_number"),
                         "score": round(float(result.score), 6),
                         "is_relevant": (
@@ -118,11 +151,36 @@ def evaluate_with_details(
                     }
                     for rank, result in enumerate(results, start=1)
                 ],
+                "search_time_ms": round(search_duration * 1000, 4),
             }
         )
 
+    count = len(questions)
+    total_search_time = sum(search_times)
+
     return {
-        "metrics": metrics,
+        "metrics": {
+            "queries_evaluated": count,
+            "k": k,
+            "precision_at_k": sum(precisions) / count,
+            "recall_at_k": sum(recalls) / count,
+            "mrr": sum(reciprocal_ranks) / count,
+        },
+        "performance": {
+            "total_search_time_seconds": round(total_search_time, 6),
+            "average_search_time_ms": round(
+                statistics.mean(search_times) * 1000,
+                4,
+            ),
+            "median_search_time_ms": round(
+                statistics.median(search_times) * 1000,
+                4,
+            ),
+            "queries_per_second": round(
+                count / total_search_time,
+                4,
+            ) if total_search_time > 0 else None,
+        },
         "query_results": query_results,
     }
 
@@ -193,7 +251,11 @@ def main() -> None:
 
     print("\nRunning TF-IDF retrieval...")
     lexical_retriever = TfidfSearch()
+
+    indexing_start = time.perf_counter()
     lexical_retriever.index(chunks, metadata)
+    lexical_indexing_time = time.perf_counter() - indexing_start
+
     lexical_results = evaluate_with_details(
         lexical_retriever,
         questions,
@@ -202,7 +264,11 @@ def main() -> None:
 
     print(f"\nLoading embedding model: {MODEL_NAME}")
     semantic_retriever = VectorSearch(model_name=MODEL_NAME)
+
+    indexing_start = time.perf_counter()
     semantic_retriever.index(chunks, metadata)
+    semantic_indexing_time = time.perf_counter() - indexing_start
+
     semantic_results = evaluate_with_details(
         semantic_retriever,
         questions,
@@ -220,11 +286,19 @@ def main() -> None:
         "methods": {
             "tfidf": {
                 "description": "Lexical retrieval using TF-IDF",
+                "indexing_time_seconds": round(
+                    lexical_indexing_time,
+                    6,
+                ),
                 **lexical_results,
             },
             "semantic": {
                 "description": f"Embedding retrieval using {MODEL_NAME}",
                 "model": MODEL_NAME,
+                "indexing_time_seconds": round(
+                    semantic_indexing_time,
+                    6,
+                ),
                 **semantic_results,
             },
         },
@@ -238,17 +312,51 @@ def main() -> None:
 
     print("\nRetrieval comparison")
     print("--------------------")
-    print(f"{'Metric':<18}{'TF-IDF':>12}{'Semantic':>12}")
+    print(f"{'Metric':<28}{'TF-IDF':>14}{'Semantic':>14}")
 
-    for metric, label in (
-        ("precision_at_k", f"Precision@{args.k}"),
-        ("recall_at_k", f"Recall@{args.k}"),
-        ("mrr", "MRR"),
-    ):
+    metric_rows = (
+        ("Precision@K", "precision_at_k"),
+        ("Recall@K", "recall_at_k"),
+        ("MRR", "mrr"),
+    )
+
+    for label, metric in metric_rows:
         lexical_value = lexical_results["metrics"][metric]
         semantic_value = semantic_results["metrics"][metric]
+
         print(
-            f"{label:<18}{lexical_value:>12.3f}{semantic_value:>12.3f}"
+            f"{label:<28}{lexical_value:>14.3f}"
+            f"{semantic_value:>14.3f}"
+        )
+
+    print("\nPerformance comparison")
+    print("----------------------")
+
+    performance_rows = (
+        ("Indexing time (seconds)", "indexing_time_seconds"),
+    )
+
+    for label, metric in performance_rows:
+        lexical_value = output["methods"]["tfidf"][metric]
+        semantic_value = output["methods"]["semantic"][metric]
+
+        print(
+            f"{label:<28}{lexical_value:>14.4f}"
+            f"{semantic_value:>14.4f}"
+        )
+
+    for label, metric in (
+        ("Total search time (seconds)", "total_search_time_seconds"),
+        ("Average search time (ms)", "average_search_time_ms"),
+        ("Median search time (ms)", "median_search_time_ms"),
+        ("Queries per second", "queries_per_second"),
+    ):
+        lexical_value = lexical_results["performance"][metric]
+        semantic_value = semantic_results["performance"][metric]
+
+        print(
+            f"{label:<28}{lexical_value:>14.4f}"
+            f"{semantic_value:>14.4f}"
         )
 
     print(f"\nDetailed results saved to: {args.output}")

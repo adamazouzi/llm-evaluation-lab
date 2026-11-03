@@ -29,3 +29,7 @@ htmlcov/
 *.sqlite
 *.sqlite3
 outputs/
+# Extended benchmark source documents (license review pending)
+data/extended/multi_doc_corpus/*.pdf
+# Extended benchmark source files kept locally
+data/extended/sources/
