@@ -1,0 +1,241 @@
+[
+  {
+    "query": "How does a while loop repeat instructions until a condition becomes false?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-63"
+    ]
+  },
+  {
+    "query": "How can a Python function be defined using def, and how are parameters passed to it?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-102"
+    ]
+  },
+  {
+    "query": "How does recursion work, and what happens when a recursive function reaches its base case?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-120",
+      "python_tutorial.pdf::chunk-121"
+    ]
+  },
+  {
+    "query": "Which operations can be performed on a Python list using methods such as append() and index()?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-131"
+    ]
+  },
+  {
+    "query": "How does a for loop use range() to iterate over a sequence of numbers?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-151"
+    ]
+  },
+  {
+    "query": "How do Python dictionaries use keys to access, add, update, and remove values?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-178",
+      "python_tutorial.pdf::chunk-181",
+      "python_tutorial.pdf::chunk-182"
+    ]
+  },
+  {
+    "query": "How can a custom Python module be created and imported from another file?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-197"
+    ]
+  },
+  {
+    "query": "What is list slicing, and how can it be used to retrieve part of a list?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-203"
+    ]
+  },
+  {
+    "query": "What is the difference between a shallow list copy and a deep copy?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-210"
+    ]
+  },
+  {
+    "query": "How can Python open, read, and write text files?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-227"
+    ]
+  },
+  {
+    "query": "How does the with statement ensure that files are properly closed, even when an error occurs?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-245"
+    ]
+  },
+  {
+    "query": "How can try and except ValueError handle invalid user input without crashing a program?",
+    "relevant_chunk_ids": [
+      "python_tutorial.pdf::chunk-248"
+    ]
+  },
+  {
+    "query": "How does the amount of training data required by a machine learning model depend on the dataset and model complexity?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-10"
+    ]
+  },
+  {
+    "query": "How does zero-shot learning classify examples using semantic descriptions and embeddings without labelled training examples for each class?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-25"
+    ]
+  },
+  {
+    "query": "Why can traditional machine learning algorithms outperform deep learning models when only a limited amount of training data is available?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-30"
+    ]
+  },
+  {
+    "query": "What is meta-learning, and how does it help a model learn new tasks from limited data?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-35"
+    ]
+  },
+  {
+    "query": "How is few-shot learning structured using N-way k-shot tasks?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-40"
+    ]
+  },
+  {
+    "query": "How does active learning select unlabelled examples for human annotation to improve a machine learning model?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-65"
+    ]
+  },
+  {
+    "query": "Why can unsupervised learning perform worse than supervised and semi-supervised learning?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-70"
+    ]
+  },
+  {
+    "query": "How does transfer learning reuse pretrained models or knowledge from a related dataset for a new task?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-75"
+    ]
+  },
+  {
+    "query": "What is the difference between aleatoric uncertainty and epistemic uncertainty in machine learning?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-80"
+    ]
+  },
+  {
+    "query": "How can context injection improve machine learning predictions by incorporating additional contextual information?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-85",
+      "machine_learning_limited_data.pdf::chunk-86"
+    ]
+  },
+  {
+    "query": "How does data augmentation generate additional training examples using transformations such as reflection, rotation, and translation?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-88",
+      "machine_learning_limited_data.pdf::chunk-89"
+    ]
+  },
+  {
+    "query": "How can simulated data and generative neural networks such as GANs produce additional training data when datasets are limited?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-92",
+      "machine_learning_limited_data.pdf::chunk-93",
+      "machine_learning_limited_data.pdf::chunk-94"
+    ]
+  },
+  {
+    "query": "How can developers start the interactive Spark Shell using PySpark?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-1",
+      "spark_quick_start.pdf::chunk-2"
+    ]
+  },
+  {
+    "query": "What is the difference between a Spark Dataset and a DataFrame?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-2",
+      "spark_quick_start.pdf::chunk-3"
+    ]
+  },
+  {
+    "query": "What is the difference between transformations and actions in Spark?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-3",
+      "spark_quick_start.pdf::chunk-5",
+      "spark_quick_start.pdf::chunk-6"
+    ]
+  },
+  {
+    "query": "How does the filter() operation create a new DataFrame containing only matching rows?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-3",
+      "spark_quick_start.pdf::chunk-4"
+    ]
+  },
+  {
+    "query": "How can Spark implement a MapReduce workflow to count the occurrences of words in a text file?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-7",
+      "spark_quick_start.pdf::chunk-8",
+      "spark_quick_start.pdf::chunk-9",
+      "spark_quick_start.pdf::chunk-10"
+    ]
+  },
+  {
+    "query": "How can groupBy() and count() be used to calculate the frequency of each word in a dataset?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-8",
+      "spark_quick_start.pdf::chunk-10"
+    ]
+  },
+  {
+    "query": "Why is caching useful when the same Spark dataset is accessed repeatedly?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-11",
+      "spark_quick_start.pdf::chunk-12"
+    ]
+  },
+  {
+    "query": "How can a standalone PySpark application be created using SparkSession and the PySpark API?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-13",
+      "spark_quick_start.pdf::chunk-14"
+    ]
+  },
+  {
+    "query": "How is SparkSession initialized in a standalone Spark application?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-13",
+      "spark_quick_start.pdf::chunk-14"
+    ]
+  },
+  {
+    "query": "How can a PySpark application be executed using the spark-submit command?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-15",
+      "spark_quick_start.pdf::chunk-16"
+    ]
+  },
+  {
+    "query": "How can custom code dependencies be added to a PySpark application using the --py-files argument?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-14",
+      "spark_quick_start.pdf::chunk-15"
+    ]
+  },
+  {
+    "query": "How can a Scala Spark application be packaged into a JAR using sbt before execution?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-18",
+      "spark_quick_start.pdf::chunk-19",
+      "spark_quick_start.pdf::chunk-20"
+    ]
+  }
+]

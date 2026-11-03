@@ -1,0 +1,78 @@
+[
+  {
+    "query": "How does the amount of training data required by a machine learning model depend on the dataset and model complexity?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-10"
+    ]
+  },
+  {
+    "query": "How does zero-shot learning classify examples using semantic descriptions and embeddings without labelled training examples for each class?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-25"
+    ]
+  },
+  {
+    "query": "Why can traditional machine learning algorithms outperform deep learning models when only a limited amount of training data is available?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-30"
+    ]
+  },
+  {
+    "query": "What is meta-learning, and how does it help a model learn new tasks from limited data?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-35"
+    ]
+  },
+  {
+    "query": "How is few-shot learning structured using N-way k-shot tasks?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-40"
+    ]
+  },
+  {
+    "query": "How does active learning select unlabelled examples for human annotation to improve a machine learning model?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-65"
+    ]
+  },
+  {
+    "query": "Why can unsupervised learning perform worse than supervised and semi-supervised learning?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-70"
+    ]
+  },
+  {
+    "query": "How does transfer learning reuse pretrained models or knowledge from a related dataset for a new task?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-75"
+    ]
+  },
+  {
+    "query": "What is the difference between aleatoric uncertainty and epistemic uncertainty in machine learning?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-80"
+    ]
+  },
+  {
+    "query": "How can context injection improve machine learning predictions by incorporating additional contextual information?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-85",
+      "machine_learning_limited_data.pdf::chunk-86"
+    ]
+  },
+  {
+    "query": "How does data augmentation generate additional training examples using transformations such as reflection, rotation, and translation?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-88",
+      "machine_learning_limited_data.pdf::chunk-89"
+    ]
+  },
+  {
+    "query": "How can simulated data and generative neural networks such as GANs produce additional training data when datasets are limited?",
+    "relevant_chunk_ids": [
+      "machine_learning_limited_data.pdf::chunk-92",
+      "machine_learning_limited_data.pdf::chunk-93",
+      "machine_learning_limited_data.pdf::chunk-94"
+    ]
+  }
+]

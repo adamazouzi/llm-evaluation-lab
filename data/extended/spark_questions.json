@@ -1,0 +1,90 @@
+[
+  {
+    "query": "How can developers start the interactive Spark Shell using PySpark?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-1",
+      "spark_quick_start.pdf::chunk-2"
+    ]
+  },
+  {
+    "query": "What is the difference between a Spark Dataset and a DataFrame?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-2",
+      "spark_quick_start.pdf::chunk-3"
+    ]
+  },
+  {
+    "query": "What is the difference between transformations and actions in Spark?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-3",
+      "spark_quick_start.pdf::chunk-5",
+      "spark_quick_start.pdf::chunk-6"
+    ]
+  },
+  {
+    "query": "How does the filter() operation create a new DataFrame containing only matching rows?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-3",
+      "spark_quick_start.pdf::chunk-4"
+    ]
+  },
+  {
+    "query": "How can Spark implement a MapReduce workflow to count the occurrences of words in a text file?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-7",
+      "spark_quick_start.pdf::chunk-8",
+      "spark_quick_start.pdf::chunk-9",
+      "spark_quick_start.pdf::chunk-10"
+    ]
+  },
+  {
+    "query": "How can groupBy() and count() be used to calculate the frequency of each word in a dataset?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-8",
+      "spark_quick_start.pdf::chunk-10"
+    ]
+  },
+  {
+    "query": "Why is caching useful when the same Spark dataset is accessed repeatedly?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-11",
+      "spark_quick_start.pdf::chunk-12"
+    ]
+  },
+  {
+    "query": "How can a standalone PySpark application be created using SparkSession and the PySpark API?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-13",
+      "spark_quick_start.pdf::chunk-14"
+    ]
+  },
+  {
+    "query": "How is SparkSession initialized in a standalone Spark application?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-13",
+      "spark_quick_start.pdf::chunk-14"
+    ]
+  },
+  {
+    "query": "How can a PySpark application be executed using the spark-submit command?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-15",
+      "spark_quick_start.pdf::chunk-16"
+    ]
+  },
+  {
+    "query": "How can custom code dependencies be added to a PySpark application using the --py-files argument?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-14",
+      "spark_quick_start.pdf::chunk-15"
+    ]
+  },
+  {
+    "query": "How can a Scala Spark application be packaged into a JAR using sbt before execution?",
+    "relevant_chunk_ids": [
+      "spark_quick_start.pdf::chunk-18",
+      "spark_quick_start.pdf::chunk-19",
+      "spark_quick_start.pdf::chunk-20"
+    ]
+  }
+]

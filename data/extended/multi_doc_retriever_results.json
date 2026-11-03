@@ -1,0 +1,2476 @@
+{
+  "benchmark_type": "multi_document_retriever_comparison",
+  "corpus_directory": "data/extended/multi_doc_corpus",
+  "corpus_documents": [
+    "machine_learning_limited_data.pdf",
+    "python_tutorial.pdf",
+    "spark_quick_start.pdf"
+  ],
+  "annotations_file": "data/extended/multi_doc_questions.json",
+  "corpus_chunks": 510,
+  "queries_evaluated": 36,
+  "k": 3,
+  "methods": {
+    "tfidf": {
+      "description": "Lexical retrieval using TF-IDF",
+      "indexing_time_seconds": 0.022912,
+      "metrics": {
+        "queries_evaluated": 36,
+        "k": 3,
+        "precision_at_k": 0.3611111111111111,
+        "recall_at_k": 0.7222222222222222,
+        "mrr": 0.6805555555555556
+      },
+      "performance": {
+        "total_search_time_seconds": 0.013241,
+        "average_search_time_ms": 0.3678,
+        "median_search_time_ms": 0.3125,
+        "queries_per_second": 2718.9129
+      },
+      "query_results": [
+        {
+          "query": "How does a while loop repeat instructions until a condition becomes false?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-63"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-99",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 44,
+              "score": 0.217718,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-98",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 44,
+              "score": 0.200799,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-62",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 28,
+              "score": 0.166071,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 1.8763
+        },
+        {
+          "query": "How can a Python function be defined using def, and how are parameters passed to it?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-102"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-102",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 46,
+              "score": 0.19119,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-254",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 112,
+              "score": 0.187489,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-103",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 47,
+              "score": 0.162522,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3948
+        },
+        {
+          "query": "How does recursion work, and what happens when a recursive function reaches its base case?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-120",
+            "python_tutorial.pdf::chunk-121"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-124",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 54,
+              "score": 0.198062,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-118",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 52,
+              "score": 0.161905,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-122",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 54,
+              "score": 0.154776,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3057
+        },
+        {
+          "query": "Which operations can be performed on a Python list using methods such as append() and index()?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-131"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-33",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 14,
+              "score": 0.172441,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-142",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 62,
+              "score": 0.148301,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-134",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 60,
+              "score": 0.146629,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3132
+        },
+        {
+          "query": "How does a for loop use range() to iterate over a sequence of numbers?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-151"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-151",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 66,
+              "score": 0.268185,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-152",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 66,
+              "score": 0.250029,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-228",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.18628,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3112
+        },
+        {
+          "query": "How do Python dictionaries use keys to access, add, update, and remove values?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-178",
+            "python_tutorial.pdf::chunk-181",
+            "python_tutorial.pdf::chunk-182"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-183",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 80,
+              "score": 0.353532,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-188",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 82,
+              "score": 0.278857,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-178",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 78,
+              "score": 0.256583,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.2997
+        },
+        {
+          "query": "How can a custom Python module be created and imported from another file?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-197"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-199",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 86,
+              "score": 0.34146,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-197",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 86,
+              "score": 0.308641,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-198",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 86,
+              "score": 0.266317,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3147
+        },
+        {
+          "query": "What is list slicing, and how can it be used to retrieve part of a list?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-203"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-220",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 94,
+              "score": 0.299052,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-210",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 91,
+              "score": 0.283146,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-204",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 89,
+              "score": 0.27853,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3243
+        },
+        {
+          "query": "What is the difference between a shallow list copy and a deep copy?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-210"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-165",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 72,
+              "score": 0.241886,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-210",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 91,
+              "score": 0.227373,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-163",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 71,
+              "score": 0.225151,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3118
+        },
+        {
+          "query": "How can Python open, read, and write text files?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-227"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-245",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 106,
+              "score": 0.352028,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-226",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.309918,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-227",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.282999,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.3064
+        },
+        {
+          "query": "How does the with statement ensure that files are properly closed, even when an error occurs?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-245"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-245",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 106,
+              "score": 0.260603,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-247",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 106,
+              "score": 0.137534,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-366",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 126,
+              "score": 0.135329,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3214
+        },
+        {
+          "query": "How can try and except ValueError handle invalid user input without crashing a program?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-248"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-248",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 107,
+              "score": 0.319244,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-246",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 106,
+              "score": 0.30383,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-251",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 108,
+              "score": 0.163129,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3114
+        },
+        {
+          "query": "How does the amount of training data required by a machine learning model depend on the dataset and model complexity?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-10"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-10",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 5,
+              "score": 0.449931,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-49",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 26,
+              "score": 0.362961,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-74",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 41,
+              "score": 0.330095,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3209
+        },
+        {
+          "query": "How does zero-shot learning classify examples using semantic descriptions and embeddings without labelled training examples for each class?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-25"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-25",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 13,
+              "score": 0.399861,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-24",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 13,
+              "score": 0.299653,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-37",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 20,
+              "score": 0.274815,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3117
+        },
+        {
+          "query": "Why can traditional machine learning algorithms outperform deep learning models when only a limited amount of training data is available?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-30"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-11",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 5,
+              "score": 0.513191,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-30",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 16,
+              "score": 0.422538,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-10",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 5,
+              "score": 0.411306,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3147
+        },
+        {
+          "query": "What is meta-learning, and how does it help a model learn new tasks from limited data?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-35"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-34",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 18,
+              "score": 0.509237,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-35",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 18,
+              "score": 0.475311,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-44",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 24,
+              "score": 0.303412,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3111
+        },
+        {
+          "query": "How is few-shot learning structured using N-way k-shot tasks?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-40"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-37",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 20,
+              "score": 0.53937,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-2",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 2,
+              "score": 0.442065,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-40",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 21,
+              "score": 0.418752,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.3016
+        },
+        {
+          "query": "How does active learning select unlabelled examples for human annotation to improve a machine learning model?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-65"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-64",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 35,
+              "score": 0.501997,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-65",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 35,
+              "score": 0.446653,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-66",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 36,
+              "score": 0.419787,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.319
+        },
+        {
+          "query": "Why can unsupervised learning perform worse than supervised and semi-supervised learning?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-70"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-70",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 38,
+              "score": 0.591882,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-4",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 2,
+              "score": 0.514921,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-63",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 34,
+              "score": 0.436302,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.2922
+        },
+        {
+          "query": "How does transfer learning reuse pretrained models or knowledge from a related dataset for a new task?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-75"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-79",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 43,
+              "score": 0.333716,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-75",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 41,
+              "score": 0.225126,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-74",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 41,
+              "score": 0.220235,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3199
+        },
+        {
+          "query": "What is the difference between aleatoric uncertainty and epistemic uncertainty in machine learning?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-80"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-80",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 44,
+              "score": 0.612145,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-81",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 44,
+              "score": 0.242475,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-75",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 41,
+              "score": 0.202739,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3103
+        },
+        {
+          "query": "How can context injection improve machine learning predictions by incorporating additional contextual information?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-85",
+            "machine_learning_limited_data.pdf::chunk-86"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-84",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 46,
+              "score": 0.553562,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-85",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 46,
+              "score": 0.381219,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-86",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 46,
+              "score": 0.284736,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.304
+        },
+        {
+          "query": "How does data augmentation generate additional training examples using transformations such as reflection, rotation, and translation?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-88",
+            "machine_learning_limited_data.pdf::chunk-89"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-89",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 48,
+              "score": 0.428797,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-92",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 50,
+              "score": 0.256811,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-93",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 50,
+              "score": 0.229179,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3044
+        },
+        {
+          "query": "How can simulated data and generative neural networks such as GANs produce additional training data when datasets are limited?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-92",
+            "machine_learning_limited_data.pdf::chunk-93",
+            "machine_learning_limited_data.pdf::chunk-94"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-93",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 50,
+              "score": 0.482214,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-12",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 6,
+              "score": 0.321367,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-92",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 50,
+              "score": 0.318268,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.3112
+        },
+        {
+          "query": "How can developers start the interactive Spark Shell using PySpark?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-1",
+            "spark_quick_start.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-0",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.345488,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-1",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.278378,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.277362,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3049
+        },
+        {
+          "query": "What is the difference between a Spark Dataset and a DataFrame?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-2",
+            "spark_quick_start.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-3",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.436174,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-4",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.349167,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-2",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.260391,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.3155
+        },
+        {
+          "query": "What is the difference between transformations and actions in Spark?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-3",
+            "spark_quick_start.pdf::chunk-5",
+            "spark_quick_start.pdf::chunk-6"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-6",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.353909,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-4",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.248685,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-0",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.192646,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3261
+        },
+        {
+          "query": "How does the filter() operation create a new DataFrame containing only matching rows?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-3",
+            "spark_quick_start.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-3",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.317371,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-4",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.151976,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-223",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 95,
+              "score": 0.118742,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3142
+        },
+        {
+          "query": "How can Spark implement a MapReduce workflow to count the occurrences of words in a text file?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-10",
+            "spark_quick_start.pdf::chunk-7",
+            "spark_quick_start.pdf::chunk-8",
+            "spark_quick_start.pdf::chunk-9"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-10",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.273694,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-226",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.267417,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-8",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.248868,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.3203
+        },
+        {
+          "query": "How can groupBy() and count() be used to calculate the frequency of each word in a dataset?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-10",
+            "spark_quick_start.pdf::chunk-8"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-8",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.450919,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-10",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.22791,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-165",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 72,
+              "score": 0.219543,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3272
+        },
+        {
+          "query": "Why is caching useful when the same Spark dataset is accessed repeatedly?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-11",
+            "spark_quick_start.pdf::chunk-12"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-11",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.324636,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-0",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.241906,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-4",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.189121,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.305
+        },
+        {
+          "query": "How can a standalone PySpark application be created using SparkSession and the PySpark API?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-13",
+            "spark_quick_start.pdf::chunk-14"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.486069,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-16",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.251479,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-2",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.250939,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3145
+        },
+        {
+          "query": "How is SparkSession initialized in a standalone Spark application?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-13",
+            "spark_quick_start.pdf::chunk-14"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-18",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.484505,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-21",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 6,
+              "score": 0.464325,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-20",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 6,
+              "score": 0.420781,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.3038
+        },
+        {
+          "query": "How can a PySpark application be executed using the spark-submit command?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-15",
+            "spark_quick_start.pdf::chunk-16"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-15",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.429631,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.374263,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-16",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.29069,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 0.3052
+        },
+        {
+          "query": "How can custom code dependencies be added to a PySpark application using the --py-files argument?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-14",
+            "spark_quick_start.pdf::chunk-15"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.296619,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-15",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.20177,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-366",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 126,
+              "score": 0.168043,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.436
+        },
+        {
+          "query": "How can a Scala Spark application be packaged into a JAR using sbt before execution?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-18",
+            "spark_quick_start.pdf::chunk-19",
+            "spark_quick_start.pdf::chunk-20"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-19",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.357919,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-18",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.313273,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.279622,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 0.5563
+        }
+      ]
+    },
+    "semantic": {
+      "description": "Embedding retrieval using sentence-transformers/all-MiniLM-L6-v2",
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "indexing_time_seconds": 4.513896,
+      "metrics": {
+        "queries_evaluated": 36,
+        "k": 3,
+        "precision_at_k": 0.37037037037037035,
+        "recall_at_k": 0.6921296296296297,
+        "mrr": 0.625
+      },
+      "performance": {
+        "total_search_time_seconds": 0.246383,
+        "average_search_time_ms": 6.844,
+        "median_search_time_ms": 4.9344,
+        "queries_per_second": 146.1141
+      },
+      "query_results": [
+        {
+          "query": "How does a while loop repeat instructions until a condition becomes false?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-63"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-94",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 42,
+              "score": 0.614695,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-62",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 28,
+              "score": 0.605543,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-99",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 44,
+              "score": 0.592948,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 17.215
+        },
+        {
+          "query": "How can a Python function be defined using def, and how are parameters passed to it?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-102"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-104",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 47,
+              "score": 0.578499,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-105",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 47,
+              "score": 0.573595,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-103",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 47,
+              "score": 0.569898,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 6.8173
+        },
+        {
+          "query": "How does recursion work, and what happens when a recursive function reaches its base case?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-120",
+            "python_tutorial.pdf::chunk-121"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-124",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 54,
+              "score": 0.53751,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-125",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 55,
+              "score": 0.524653,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-116",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 52,
+              "score": 0.491672,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.9986
+        },
+        {
+          "query": "Which operations can be performed on a Python list using methods such as append() and index()?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-131"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-134",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 60,
+              "score": 0.620956,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-133",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 59,
+              "score": 0.605129,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-142",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 62,
+              "score": 0.602832,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.3539
+        },
+        {
+          "query": "How does a for loop use range() to iterate over a sequence of numbers?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-151"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-151",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 66,
+              "score": 0.745805,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-158",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 69,
+              "score": 0.668046,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-152",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 66,
+              "score": 0.621509,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.2738
+        },
+        {
+          "query": "How do Python dictionaries use keys to access, add, update, and remove values?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-178",
+            "python_tutorial.pdf::chunk-181",
+            "python_tutorial.pdf::chunk-182"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-178",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 78,
+              "score": 0.622044,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-183",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 80,
+              "score": 0.620764,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-190",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 82,
+              "score": 0.567914,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.942
+        },
+        {
+          "query": "How can a custom Python module be created and imported from another file?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-197"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-198",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 86,
+              "score": 0.630489,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-197",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 86,
+              "score": 0.62271,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-199",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 86,
+              "score": 0.564004,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 57.2495
+        },
+        {
+          "query": "What is list slicing, and how can it be used to retrieve part of a list?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-203"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-224",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 95,
+              "score": 0.637346,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-204",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 89,
+              "score": 0.591549,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-203",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 88,
+              "score": 0.556842,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 5.3222
+        },
+        {
+          "query": "What is the difference between a shallow list copy and a deep copy?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-210"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-210",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 91,
+              "score": 0.543109,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-211",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 91,
+              "score": 0.538333,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-209",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 91,
+              "score": 0.451443,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.3619
+        },
+        {
+          "query": "How can Python open, read, and write text files?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-227"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-226",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.701108,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-236",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 101,
+              "score": 0.637003,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-227",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.620298,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 7.2015
+        },
+        {
+          "query": "How does the with statement ensure that files are properly closed, even when an error occurs?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-245"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-245",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 106,
+              "score": 0.601,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-226",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.425257,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-227",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 98,
+              "score": 0.419466,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.1936
+        },
+        {
+          "query": "How can try and except ValueError handle invalid user input without crashing a program?",
+          "relevant_chunk_ids": [
+            "python_tutorial.pdf::chunk-248"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "python_tutorial.pdf::chunk-248",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 107,
+              "score": 0.73438,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "python_tutorial.pdf::chunk-246",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 106,
+              "score": 0.684934,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "python_tutorial.pdf::chunk-245",
+              "document_name": "python_tutorial.pdf",
+              "page_number": 106,
+              "score": 0.490277,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.7197
+        },
+        {
+          "query": "How does the amount of training data required by a machine learning model depend on the dataset and model complexity?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-10"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-12",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 6,
+              "score": 0.615577,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-10",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 5,
+              "score": 0.596252,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-13",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 6,
+              "score": 0.529732,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.8522
+        },
+        {
+          "query": "How does zero-shot learning classify examples using semantic descriptions and embeddings without labelled training examples for each class?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-25"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-50",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 26,
+              "score": 0.763475,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-25",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 13,
+              "score": 0.690757,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-24",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 13,
+              "score": 0.662312,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.9232
+        },
+        {
+          "query": "Why can traditional machine learning algorithms outperform deep learning models when only a limited amount of training data is available?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-30"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-12",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 6,
+              "score": 0.717524,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-10",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 5,
+              "score": 0.673089,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-11",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 5,
+              "score": 0.667553,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.6198
+        },
+        {
+          "query": "What is meta-learning, and how does it help a model learn new tasks from limited data?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-35"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-35",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 18,
+              "score": 0.833806,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-34",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 18,
+              "score": 0.769053,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-44",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 24,
+              "score": 0.675267,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.5924
+        },
+        {
+          "query": "How is few-shot learning structured using N-way k-shot tasks?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-40"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-37",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 20,
+              "score": 0.694268,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-39",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 21,
+              "score": 0.672595,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-40",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 21,
+              "score": 0.65511,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.8469
+        },
+        {
+          "query": "How does active learning select unlabelled examples for human annotation to improve a machine learning model?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-65"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-64",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 35,
+              "score": 0.792487,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-66",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 36,
+              "score": 0.737054,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-65",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 35,
+              "score": 0.709899,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.6135
+        },
+        {
+          "query": "Why can unsupervised learning perform worse than supervised and semi-supervised learning?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-70"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-70",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 38,
+              "score": 0.681742,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-63",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 34,
+              "score": 0.647889,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-61",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 33,
+              "score": 0.634872,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.4331
+        },
+        {
+          "query": "How does transfer learning reuse pretrained models or knowledge from a related dataset for a new task?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-75"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-77",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 42,
+              "score": 0.672848,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-74",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 41,
+              "score": 0.569897,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-79",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 43,
+              "score": 0.569198,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.5278
+        },
+        {
+          "query": "What is the difference between aleatoric uncertainty and epistemic uncertainty in machine learning?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-80"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-80",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 44,
+              "score": 0.627444,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-75",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 41,
+              "score": 0.448211,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-81",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 44,
+              "score": 0.431628,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.4806
+        },
+        {
+          "query": "How can context injection improve machine learning predictions by incorporating additional contextual information?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-85",
+            "machine_learning_limited_data.pdf::chunk-86"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-84",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 46,
+              "score": 0.670045,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-75",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 41,
+              "score": 0.647207,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-85",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 46,
+              "score": 0.612145,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.53
+        },
+        {
+          "query": "How does data augmentation generate additional training examples using transformations such as reflection, rotation, and translation?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-88",
+            "machine_learning_limited_data.pdf::chunk-89"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-89",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 48,
+              "score": 0.702384,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-91",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 49,
+              "score": 0.628544,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-90",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 48,
+              "score": 0.579725,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.4692
+        },
+        {
+          "query": "How can simulated data and generative neural networks such as GANs produce additional training data when datasets are limited?",
+          "relevant_chunk_ids": [
+            "machine_learning_limited_data.pdf::chunk-92",
+            "machine_learning_limited_data.pdf::chunk-93",
+            "machine_learning_limited_data.pdf::chunk-94"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-93",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 50,
+              "score": 0.72438,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-94",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 50,
+              "score": 0.622408,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "machine_learning_limited_data.pdf::chunk-92",
+              "document_name": "machine_learning_limited_data.pdf",
+              "page_number": 50,
+              "score": 0.590672,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.4557
+        },
+        {
+          "query": "How can developers start the interactive Spark Shell using PySpark?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-1",
+            "spark_quick_start.pdf::chunk-2"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.702015,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-0",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.684715,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-16",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.684337,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.389
+        },
+        {
+          "query": "What is the difference between a Spark Dataset and a DataFrame?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-2",
+            "spark_quick_start.pdf::chunk-3"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-2",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.757082,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-4",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.62907,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-3",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.623486,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.5899
+        },
+        {
+          "query": "What is the difference between transformations and actions in Spark?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-3",
+            "spark_quick_start.pdf::chunk-5",
+            "spark_quick_start.pdf::chunk-6"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-5",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.468241,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-25",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 7,
+              "score": 0.465648,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-0",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.45651,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 6.1638
+        },
+        {
+          "query": "How does the filter() operation create a new DataFrame containing only matching rows?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-3",
+            "spark_quick_start.pdf::chunk-4"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-4",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.50871,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-3",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 2,
+              "score": 0.448835,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-7",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.351276,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.2483
+        },
+        {
+          "query": "How can Spark implement a MapReduce workflow to count the occurrences of words in a text file?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-10",
+            "spark_quick_start.pdf::chunk-7",
+            "spark_quick_start.pdf::chunk-8",
+            "spark_quick_start.pdf::chunk-9"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-8",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.854699,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-10",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.835591,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-9",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.687951,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 5.0101
+        },
+        {
+          "query": "How can groupBy() and count() be used to calculate the frequency of each word in a dataset?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-10",
+            "spark_quick_start.pdf::chunk-8"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-8",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.568091,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-10",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.553746,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-7",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.467118,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 5.0019
+        },
+        {
+          "query": "Why is caching useful when the same Spark dataset is accessed repeatedly?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-11",
+            "spark_quick_start.pdf::chunk-12"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-11",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 3,
+              "score": 0.745851,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-0",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 1,
+              "score": 0.549979,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-12",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.506559,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.9849
+        },
+        {
+          "query": "How can a standalone PySpark application be created using SparkSession and the PySpark API?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-13",
+            "spark_quick_start.pdf::chunk-14"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.79449,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-16",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.660226,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-24",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 7,
+              "score": 0.631571,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.9268
+        },
+        {
+          "query": "How is SparkSession initialized in a standalone Spark application?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-13",
+            "spark_quick_start.pdf::chunk-14"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-18",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.620788,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-22",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 6,
+              "score": 0.61173,
+              "is_relevant": false
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.59965,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 5.3813
+        },
+        {
+          "query": "How can a PySpark application be executed using the spark-submit command?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-15",
+            "spark_quick_start.pdf::chunk-16"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-25",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 7,
+              "score": 0.789831,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-15",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.769321,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-16",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.734454,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.5057
+        },
+        {
+          "query": "How can custom code dependencies be added to a PySpark application using the --py-files argument?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-14",
+            "spark_quick_start.pdf::chunk-15"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-13",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.598525,
+              "is_relevant": false
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-15",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 4,
+              "score": 0.584858,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-24",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 7,
+              "score": 0.465817,
+              "is_relevant": false
+            }
+          ],
+          "search_time_ms": 4.6545
+        },
+        {
+          "query": "How can a Scala Spark application be packaged into a JAR using sbt before execution?",
+          "relevant_chunk_ids": [
+            "spark_quick_start.pdf::chunk-18",
+            "spark_quick_start.pdf::chunk-19",
+            "spark_quick_start.pdf::chunk-20"
+          ],
+          "retrieved_chunks": [
+            {
+              "rank": 1,
+              "chunk_id": "spark_quick_start.pdf::chunk-19",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.840537,
+              "is_relevant": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "spark_quick_start.pdf::chunk-18",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 5,
+              "score": 0.756855,
+              "is_relevant": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "spark_quick_start.pdf::chunk-20",
+              "document_name": "spark_quick_start.pdf",
+              "page_number": 6,
+              "score": 0.720046,
+              "is_relevant": true
+            }
+          ],
+          "search_time_ms": 4.5332
+        }
+      ]
+    }
+  }
+}

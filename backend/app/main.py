@@ -2,16 +2,22 @@
 """FastAPI application for the LLM Evaluation Lab."""
 
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 
 from backend.app.schemas.rag import AskRequest, AskResponse
 from backend.app.services.azure_openai import AzureOpenAIAnswerGenerator
+from backend.app.services.document_loader import load_pdf_chunks
 from backend.app.services.keyword_search import TfidfSearch
 from backend.app.services.rag_pipeline import RAGPipeline
+from backend.app.services.vector_search import VectorSearch
 
 load_dotenv()
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PDF_CORPUS_DIR = PROJECT_ROOT / "data" / "demo" / "multi_doc_corpus"
 
 
 def demo_answer_generator(question: str, context: str) -> str:
@@ -57,31 +63,97 @@ def create_demo_pipeline() -> RAGPipeline:
     )
 
 
-def create_rag_pipeline() -> RAGPipeline:
-    """Build the RAG pipeline using the selected provider."""
-    provider = os.getenv("LLM_PROVIDER", "demo").strip().lower()
+def create_pdf_retriever(retriever_type: str):
+    """Load the PDF corpus and build the selected retrieval index."""
+    if not PDF_CORPUS_DIR.exists():
+        raise FileNotFoundError(
+            f"PDF corpus directory not found: {PDF_CORPUS_DIR}"
+        )
 
-    if provider == "demo":
-        return create_demo_pipeline()
+    pdf_files = sorted(PDF_CORPUS_DIR.glob("*.pdf"))
+
+    if not pdf_files:
+        raise ValueError(
+            f"No PDF files found in: {PDF_CORPUS_DIR}"
+        )
+
+    chunks = []
+    metadata = []
+
+    for pdf_path in pdf_files:
+        document_chunks = load_pdf_chunks(pdf_path)
+
+        for chunk in document_chunks:
+            chunks.append(chunk.text)
+            metadata.append(
+                {
+                    "chunk_id": (
+                        f"{pdf_path.stem}-page-{chunk.page_number}"
+                        f"-chunk-{chunk.chunk_index}"
+                    ),
+                    "document_name": chunk.document_name,
+                    "page_number": chunk.page_number,
+                }
+            )
+
+    if retriever_type == "tfidf":
+        retriever = TfidfSearch()
+    elif retriever_type == "semantic":
+        retriever = VectorSearch()
+    else:
+        raise ValueError(
+            "Unsupported RETRIEVER_TYPE. Choose 'tfidf' or 'semantic'."
+        )
+
+    retriever.index(chunks, metadata)
+
+    return retriever
+
+
+def create_rag_pipeline() -> RAGPipeline:
+    """Build the RAG pipeline using the configured corpus and provider."""
+    provider = os.getenv("LLM_PROVIDER", "demo").strip().lower()
+    corpus = os.getenv("RAG_CORPUS", "demo").strip().lower()
+    retriever_type = (
+        os.getenv("RETRIEVER_TYPE", "tfidf").strip().lower()
+    )
+
+    if provider not in {"demo", "azure"}:
+        raise ValueError(
+            "Unsupported LLM_PROVIDER. Choose 'demo' or 'azure'."
+        )
+
+    if corpus not in {"demo", "pdf"}:
+        raise ValueError(
+            "Unsupported RAG_CORPUS. Choose 'demo' or 'pdf'."
+        )
+
+    if corpus == "demo":
+        pipeline = create_demo_pipeline()
+    else:
+        retriever = create_pdf_retriever(retriever_type)
+        pipeline = RAGPipeline(
+            retriever=retriever,
+            answer_generator=demo_answer_generator,
+            top_k=3,
+        )
 
     if provider == "azure":
-        generator = AzureOpenAIAnswerGenerator.from_environment()
-        pipeline = create_demo_pipeline()
-        pipeline.answer_generator = generator
-        return pipeline
+        pipeline.answer_generator = (
+            AzureOpenAIAnswerGenerator.from_environment()
+        )
 
-    raise ValueError(
-        "Unsupported LLM_PROVIDER. Choose 'demo' or 'azure'."
-    )
+    return pipeline
 
 
 app = FastAPI(
     title="LLM Evaluation Lab API",
     description=(
         "API prototype for retrieval and RAG evaluation. "
-        "Azure OpenAI is optional; demo mode works offline."
+        "Supports demo and PDF corpora, TF-IDF and semantic retrieval, "
+        "and optional Azure OpenAI generation."
     ),
-    version="0.3.0",
+    version="0.4.0",
 )
 
 app.state.rag_pipeline = create_rag_pipeline()
